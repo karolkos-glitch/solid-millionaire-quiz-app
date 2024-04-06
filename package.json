@@ -1,27 +1,33 @@
 {
-  "name": "millionaire-app",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
-    "prettier:format": "prettier --write ./src",
-    "prettier:check": "prettier --check ./src"
-  },
-  "dependencies": {
-    "@solidjs/router": "^0.13.1",
-    "solid-js": "^1.8.15",
-    "solid-motionone": "^1.0.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.3",
-    "typescript": "^5.2.2",
-    "vite": "^5.2.0",
-    "vite-plugin-solid": "^2.10.2"
-  }
+    "name": "millionaire-app",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "preview": "vite preview",
+        "prettier:format": "prettier --write ./src",
+        "prettier:check": "prettier --check ./src",
+        "prepare": "husky && husky install"
+    },
+    "dependencies": {
+        "@solidjs/router": "^0.13.1",
+        "solid-js": "^1.8.15",
+        "solid-motionone": "^1.0.0"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.19",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
+        "postcss": "^8.4.38",
+        "prettier": "^3.2.5",
+        "tailwindcss": "^3.4.3",
+        "typescript": "^5.2.2",
+        "vite": "^5.2.0",
+        "vite-plugin-solid": "^2.10.2"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,md}": "pnpm prettier:format"
+    }
 }
