@@ -6,7 +6,7 @@ const Button: Component<
     return (
         <button
             {...props}
-            class="bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800"
+            class="border-neutral-200 bg-white text-black dark:border-slate-800 dark:bg-slate-900 dark:text-white"
         >
             {props.children}
         </button>
