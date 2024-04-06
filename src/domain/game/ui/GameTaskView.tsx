@@ -1,20 +1,20 @@
-import { Component } from "solid-js";
-import GameTaskAnswerView from "./GameTaskAnswerView";
+import { Component, JSX, Show } from "solid-js";
 import { GameTask } from "../types";
 
-const GameTaskView: Component<GameTask> = (props) => {
+const GameTaskView: Component<{
+    gameTask?: GameTask;
+    children: JSX.Element;
+}> = (props) => {
     return (
-        <div>
-            <span>
-                <strong>Treść Pytania: </strong>
-                {props.description}
-            </span>
-            <div class="flex gap-x-4">
-                {props.answers.map((gameTaskAnswer) => (
-                    <GameTaskAnswerView {...gameTaskAnswer} />
-                ))}
+        <Show when={!!props.gameTask}>
+            <div>
+                <span>
+                    <strong>Treść Pytania: </strong>
+                    {props.gameTask!.description}
+                </span>
+                <div class="flex gap-x-4">{props.children}</div>
             </div>
-        </div>
+        </Show>
     );
 };
 

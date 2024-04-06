@@ -1,6 +1,8 @@
 import { RouteSectionProps } from "@solidjs/router";
 import { Component } from "solid-js";
 
+import "solid-devtools";
+
 const App: Component<RouteSectionProps> = (props) => {
     return (
         <>

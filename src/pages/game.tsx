@@ -1,39 +1,31 @@
-import { GameStage } from "@millie/domain/game/types";
+import { gameStore } from "@millie/domain/game/gameStore";
 import GameStageView from "@millie/domain/game/ui/GameStageView";
-import { Component } from "solid-js";
+import GameTaskAnswerView from "@millie/domain/game/ui/GameTaskAnswerView";
+import GameTaskView from "@millie/domain/game/ui/GameTaskView";
+import { Component, createMemo, For } from "solid-js";
 
 const Game: Component = () => {
-    const currentGameStage = {
-        id: "0",
-        price: 400,
-        order: 2,
-        task: {
-            id: "1",
-            description: "Co jest stolicą Angoli?",
-            answers: [
-                {
-                    id: "1",
-                    value: "Kair",
-                },
-                {
-                    id: "2",
-                    value: "Addis-Abeba",
-                },
-                {
-                    id: "3",
-                    value: "Warszawa",
-                },
-                {
-                    id: "4",
-                    value: "Nikozja",
-                },
-            ],
-        },
-    } satisfies GameStage;
-
+    const [game] = gameStore;
+    const currentStage = createMemo(() =>
+        game().gameConfig.stages.find(
+            (_, index) => index + 1 === game().currentStage,
+        ),
+    );
+    const currentStageTask = createMemo(() => currentStage()?.task);
+    const currentStageTaskAnswers = createMemo(
+        () => currentStageTask()?.answers ?? [],
+    );
     return (
         <div>
-            <GameStageView {...currentGameStage} />
+            <GameStageView gameStage={currentStage()}>
+                <GameTaskView gameTask={currentStageTask()}>
+                    <For each={currentStageTaskAnswers()}>
+                        {(gameTaskAnswer) => (
+                            <GameTaskAnswerView {...gameTaskAnswer} />
+                        )}
+                    </For>
+                </GameTaskView>
+            </GameStageView>
         </div>
     );
 };

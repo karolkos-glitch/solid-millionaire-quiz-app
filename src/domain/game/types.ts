@@ -6,6 +6,7 @@ export type GameConfig = {
     stages: GameStage[];
 };
 
+
 /**
  * The shape of the game stage
  */
