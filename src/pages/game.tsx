@@ -1,21 +1,75 @@
-import { currentStage } from "@millie/domain/game/gameReactivity";
-import GameStageView from "@millie/domain/game/ui/GameStageView";
-import GameTaskAnswerView from "@millie/domain/game/ui/GameTaskAnswerView";
-import GameTaskView from "@millie/domain/game/ui/GameTaskView";
-import { Component, For } from "solid-js";
+import Button from "@millie/components/Button";
+import gameReactivity from "@millie/domain/game/gameReactivity";
+import GameStageView from "@millie/components/GameStageView";
+import GameTaskAnswerView from "@millie/components/GameTaskAnswerView";
+import GameTaskView from "@millie/components/GameTaskView";
+import { Component, createEffect, For, Match, Show, Switch } from "solid-js";
+import GameResult from "@millie/components/GameResult";
 
 const Game: Component = () => {
+    const {
+        userInGameState: [getUserInGameState, setUserInGameState],
+        currentStage: [getCurrentStage, setCurrentStage],
+        gameConfig: [getGameConfig],
+        result: [getResult, setResult],
+    } = gameReactivity;
+
+    createEffect(() => {
+        if (getUserInGameState() !== "RESET") return;
+        setUserInGameState(() => "IN_PROGRESS");
+        setCurrentStage(getGameConfig().stages.at(0)!);
+        setResult((prevResult) => ({
+            id: String(Number(prevResult.id + 1)),
+            score: 0,
+        }));
+    });
+
     return (
         <div>
-            <GameStageView gameStage={currentStage()}>
-                <GameTaskView gameTask={currentStage()?.task}>
-                    <For each={currentStage()?.task.answers}>
-                        {(gameTaskAnswer) => (
-                            <GameTaskAnswerView {...gameTaskAnswer} />
+            <Switch>
+                <Match when={getUserInGameState() === "IN_PROGRESS"}>
+                    <Show when={getCurrentStage()}>
+                        {(stage) => (
+                            <GameStageView gameStage={stage()}>
+                                <GameTaskView
+                                    description={stage().task.description}
+                                >
+                                    <For each={stage().task.answers}>
+                                        {(gameTaskAnswer) => (
+                                            <GameTaskAnswerView
+                                                {...gameTaskAnswer}
+                                            />
+                                        )}
+                                    </For>
+                                </GameTaskView>
+                            </GameStageView>
                         )}
-                    </For>
-                </GameTaskView>
-            </GameStageView>
+                    </Show>
+                </Match>
+                <Match when={getUserInGameState() === "GAME_WON"}>
+                    Win!
+                    <GameResult score={getResult().score} />
+                    <Button
+                        type="button"
+                        onClick={() => setUserInGameState(() => "RESET")}
+                    >
+                        Try to win again!!!
+                    </Button>
+                </Match>
+                <Match when={getUserInGameState() === "GAME_FAILURE"}>
+                    Failure!
+                    <GameResult score={getResult().score} />
+                    <Button
+                        type="button"
+                        onClick={() => setUserInGameState(() => "RESET")}
+                    >
+                        Try again!!!
+                    </Button>
+                </Match>
+                <Match when={getUserInGameState() === "RESET"}>
+                    Resetting game...
+                </Match>
+            </Switch>
         </div>
     );
 };

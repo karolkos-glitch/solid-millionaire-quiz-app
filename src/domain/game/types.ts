@@ -1,17 +1,31 @@
+import { Signal } from "solid-js";
+
+export type UserInGameState =
+    | "IN_PROGRESS"
+    | "GAME_WON"
+    | "GAME_FAILURE"
+    | "RESET";
+
 /**
  * Determines how game will look to the user
  */
 export type GameConfig = {
-    id: string;
+    id: ID;
     stages: GameStage[];
 };
 
+export type UserGameState = {
+    userInGameState: Signal<UserInGameState>;
+    gameConfig: Signal<GameConfig>;
+    currentStage: Signal<GameStage>;
+    result: Signal<GameResult>;
+};
 
 /**
  * The shape of the game stage
  */
 export type GameStage = {
-    id: string;
+    id: ID;
     order: number;
     price: number;
     task: GameTask;
@@ -21,16 +35,18 @@ export type GameStage = {
  * The shape of the task in the game stage
  */
 export type GameTask = {
-    id: string;
+    id: ID;
     description: string;
     answers: GameTaskAnswer[];
+    correctAnswerId: ID;
 };
 
+type ID = string;
 /**
  * The shape of the answer
  */
 export type GameTaskAnswer = {
-    id: string;
+    id: ID;
     value: string;
 };
 
@@ -38,6 +54,6 @@ export type GameTaskAnswer = {
  * Determines how game went to the user
  */
 export type GameResult = {
-    id: string;
+    id: ID;
     score: number;
 };

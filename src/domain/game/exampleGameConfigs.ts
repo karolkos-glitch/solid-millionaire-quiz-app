@@ -10,6 +10,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             task: {
                 id: "1",
                 description: "What is the capital of Angola?",
+                correctAnswerId: "3",
                 answers: [
                     { id: "1", value: "Cairo" },
                     { id: "2", value: "Addis Ababa" },
@@ -25,6 +26,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             task: {
                 id: "2",
                 description: "What is the capital of Botswana?",
+                correctAnswerId: "2",
                 answers: [
                     { id: "1", value: "Pretoria" },
                     { id: "2", value: "Gaborone" }, // Correct answer
@@ -40,6 +42,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             task: {
                 id: "3",
                 description: "What is the capital of Ethiopia?",
+                correctAnswerId: "2",
                 answers: [
                     { id: "1", value: "Nairobi" },
                     { id: "2", value: "Addis Ababa" }, // Correct answer
@@ -54,6 +57,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             price: 700,
             task: {
                 id: "4",
+                correctAnswerId: "1",
                 description: "What is the capital of Kenya?",
                 answers: [
                     { id: "1", value: "Nairobi" }, // Correct answer
@@ -69,6 +73,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             price: 800,
             task: {
                 id: "5",
+                correctAnswerId: "1",
                 description: "What is the capital of Nigeria?",
                 answers: [
                     { id: "1", value: "Abuja" }, // Correct answer
@@ -85,6 +90,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             task: {
                 id: "6",
                 description: "What is the capital of South Africa?",
+                correctAnswerId: "1",
                 answers: [
                     { id: "1", value: "Pretoria" }, // Correct answer (administrative)
                     { id: "2", value: "Cape Town" }, // Legislative capital
@@ -100,6 +106,7 @@ export const africanCapitalCitiNamesGameConfig: GameConfig = {
             task: {
                 id: "7",
                 description: "What is the capital of Tanzania?",
+                correctAnswerId: "1",
                 answers: [
                     { id: "1", value: "Dodoma" }, // Correct answer (official)
                     { id: "2", value: "Dar es Salaam" }, // Former and commercial capital
