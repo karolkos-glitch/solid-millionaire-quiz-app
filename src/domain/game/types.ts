@@ -11,8 +11,8 @@ export type GameConfig = {
  */
 export type GameStage = {
     id: string;
-    price: number;
     order: number;
+    price: number;
     task: GameTask;
 };
 
