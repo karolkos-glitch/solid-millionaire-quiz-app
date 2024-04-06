@@ -16,7 +16,7 @@ const Game: Component = () => {
 
     createEffect(() => {
         if (getUserInGameState() !== "RESET") return;
-        setUserInGameState(() => "IN_PROGRESS");
+        setUserInGameState(() => "ABLE_TO_PLAY");
         setCurrentStage(getGameConfig().stages.at(0)!);
         setResult((prevResult) => ({
             id: String(Number(prevResult.id + 1)),
@@ -27,7 +27,7 @@ const Game: Component = () => {
     return (
         <div>
             <Switch>
-                <Match when={getUserInGameState() === "IN_PROGRESS"}>
+                <Match when={getUserInGameState() === "ABLE_TO_PLAY"}>
                     <Show when={getCurrentStage()}>
                         {(stage) => (
                             <GameStageView gameStage={stage()}>
