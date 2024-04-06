@@ -1,25 +1,15 @@
-import { gameStore } from "@millie/domain/game/gameStore";
+import { currentStage } from "@millie/domain/game/gameReactivity";
 import GameStageView from "@millie/domain/game/ui/GameStageView";
 import GameTaskAnswerView from "@millie/domain/game/ui/GameTaskAnswerView";
 import GameTaskView from "@millie/domain/game/ui/GameTaskView";
-import { Component, createMemo, For } from "solid-js";
+import { Component, For } from "solid-js";
 
 const Game: Component = () => {
-    const [game] = gameStore;
-    const currentStage = createMemo(() =>
-        game().gameConfig.stages.find(
-            (_, index) => index + 1 === game().currentStage,
-        ),
-    );
-    const currentStageTask = createMemo(() => currentStage()?.task);
-    const currentStageTaskAnswers = createMemo(
-        () => currentStageTask()?.answers ?? [],
-    );
     return (
         <div>
             <GameStageView gameStage={currentStage()}>
-                <GameTaskView gameTask={currentStageTask()}>
-                    <For each={currentStageTaskAnswers()}>
+                <GameTaskView gameTask={currentStage()?.task}>
+                    <For each={currentStage()?.task.answers}>
                         {(gameTaskAnswer) => (
                             <GameTaskAnswerView {...gameTaskAnswer} />
                         )}
