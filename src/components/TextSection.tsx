@@ -1,27 +1,42 @@
-import { Component, JSX } from "solid-js";
+import { Component, JSX, Show } from "solid-js";
 
 const TextSection: Component<{
     title: string;
     content: JSX.Element;
+    imgProps?: JSX.ImgHTMLAttributes<HTMLImageElement>;
+    mode: "reversed" | "standard";
 }> = (props) => {
     return (
         <article class="flex flex-col gap-y-4">
             <header class="py-4">
-                <h2 class="text-4xl font-bold text-slate-800">{props.title}</h2>
+                <h2
+                    class="text-4xl font-bold "
+                    classList={{
+                        "text-slate-800": props.mode === "standard",
+                        "text-white": props.mode === "reversed",
+                    }}
+                >
+                    {props.title}
+                </h2>
             </header>
             <div class="grid gap-4 sm:grid-cols-2">
-                <div class="flex flex-col gap-y-4 text-slate-800">
+                <div
+                    class="flex flex-col gap-y-4"
+                    classList={{
+                        "text-slate-800": props.mode === "standard",
+                        "text-white": props.mode === "reversed",
+                    }}
+                >
                     {props.content}
                 </div>
-                <figure>
-                    <img
-                        class="object-fit rounded-sm"
-                        src="/hubert-success-reaction.webp"
-                        alt="Huber Urbański"
-                        width={500}
-                        height={300}
-                    />
-                </figure>
+                <Show when={!!props.imgProps}>
+                    <figure>
+                        <img
+                            class="object-fit rounded-sm"
+                            {...props.imgProps}
+                        />
+                    </figure>
+                </Show>
             </div>
         </article>
     );

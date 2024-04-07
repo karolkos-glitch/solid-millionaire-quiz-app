@@ -6,7 +6,15 @@ const GameStageView: Component<{
     children: JSX.Element;
 }> = (props) => {
     return (
-        <div>
+        <div class="flex flex-col gap-y-4 text-slate-800">
+            <div class="flex gap-x-2">
+                <span>
+                    <strong>Phase:</strong> {props.gameStage.order}
+                </span>
+                <span>
+                    <strong>Price:</strong> {props.gameStage.price}
+                </span>
+            </div>
             <figure>
                 <img
                     src="/hubert-urbanski-thinking.jpeg"
@@ -15,8 +23,6 @@ const GameStageView: Component<{
                     height={400}
                 />
             </figure>
-            <p>Phase no. {props.gameStage.order}</p>
-            <p>Price: {props.gameStage.price}</p>
             {props.children}
         </div>
     );
