@@ -25,77 +25,59 @@ const Game: Component = () => {
     });
 
     return (
-        <div>
-            <Switch>
-                <Match when={getUserInGameState() === "PREPARE_GAME"}>
-                    Choose trivia quiz
-                    <Button
-                        type="button"
-                        onClick={() => setUserInGameState(() => "PLAYING")}
-                    >
-                        African Capital Cities
-                    </Button>
-                </Match>
-                <Match when={getUserInGameState() === "PLAYING"}>
-                    <Show when={getCurrentStage()}>
-                        {(stage) => (
-                            <GameStageView gameStage={stage()}>
-                                <GameTaskView
-                                    description={stage().task.description}
-                                >
-                                    <For each={stage().task.answers}>
-                                        {(gameTaskAnswer) => (
-                                            <GameTaskAnswerView
-                                                {...gameTaskAnswer}
-                                            />
-                                        )}
-                                    </For>
-                                </GameTaskView>
-                            </GameStageView>
-                        )}
-                    </Show>
-                </Match>
-                <Match when={getUserInGameState() === "GAME_WON"}>
-                    Win!
-                    <figure>
-                        <img
-                            src="/huber-success-reaction.webp"
-                            alt="Huber Urbański"
-                            width={500}
-                            height={400}
-                        />
-                    </figure>
-                    <GameResult score={getResult().score} />
-                    <Button
-                        type="button"
-                        onClick={() => setUserInGameState(() => "RESET")}
-                    >
-                        Try to win again!!!
-                    </Button>
-                </Match>
-                <Match when={getUserInGameState() === "GAME_FAILURE"}>
-                    Failure!
-                    <figure>
-                        <img
-                            src="/huber-failure.jpeg"
-                            alt="Huber Urbański"
-                            width={500}
-                            height={400}
-                        />
-                    </figure>
-                    <GameResult score={getResult().score} />
-                    <Button
-                        type="button"
-                        onClick={() => setUserInGameState(() => "RESET")}
-                    >
-                        Try again!!!
-                    </Button>
-                </Match>
-                <Match when={getUserInGameState() === "RESET"}>
-                    Resetting game...
-                </Match>
-            </Switch>
-        </div>
+        <Switch>
+            <Match when={getUserInGameState() === "PREPARE_GAME"}>
+                <h2 class="text-white">Choose trivia quiz</h2>
+                <Button
+                    type="button"
+                    onClick={() => setUserInGameState(() => "PLAYING")}
+                >
+                    African Capital Cities
+                </Button>
+            </Match>
+            <Match when={getUserInGameState() === "PLAYING"}>
+                <Show when={getCurrentStage()}>
+                    {(stage) => (
+                        <GameStageView gameStage={stage()}>
+                            <GameTaskView
+                                description={stage().task.description}
+                            >
+                                <For each={stage().task.answers}>
+                                    {(gameTaskAnswer) => (
+                                        <GameTaskAnswerView
+                                            {...gameTaskAnswer}
+                                        />
+                                    )}
+                                </For>
+                            </GameTaskView>
+                        </GameStageView>
+                    )}
+                </Show>
+            </Match>
+            <Match when={getUserInGameState() === "GAME_WON"}>
+                Win!
+                <GameResult score={getResult().score} />
+                <Button
+                    type="button"
+                    onClick={() => setUserInGameState(() => "RESET")}
+                >
+                    Try to win again!!!
+                </Button>
+            </Match>
+            <Match when={getUserInGameState() === "GAME_FAILURE"}>
+                Failure!
+                <GameResult score={getResult().score} />
+                <Button
+                    type="button"
+                    onClick={() => setUserInGameState(() => "RESET")}
+                >
+                    Try again!!!
+                </Button>
+            </Match>
+            <Match when={getUserInGameState() === "RESET"}>
+                Resetting game...
+            </Match>
+        </Switch>
     );
 };
 
