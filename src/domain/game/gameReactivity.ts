@@ -4,7 +4,7 @@ import { createSignal } from "solid-js";
 
 export default {
     gameConfig: createSignal(africanCapitalCitiNamesGameConfig),
-    userInGameState: createSignal<UserInGameState>("ABLE_TO_PLAY"),
+    userInGameState: createSignal<UserInGameState>("PREPARE_GAME"),
     currentStage: createSignal(africanCapitalCitiNamesGameConfig.stages.at(0)!),
     result: createSignal({
         score: 0,

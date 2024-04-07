@@ -1,7 +1,8 @@
 import { Signal } from "solid-js";
 
 export type UserInGameState =
-    | "ABLE_TO_PLAY"
+    | "PREPARE_GAME"
+    | "PLAYING"
     | "GAME_WON"
     | "GAME_FAILURE"
     | "RESET";

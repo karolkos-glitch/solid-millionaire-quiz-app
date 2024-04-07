@@ -16,7 +16,7 @@ const Game: Component = () => {
 
     createEffect(() => {
         if (getUserInGameState() !== "RESET") return;
-        setUserInGameState(() => "ABLE_TO_PLAY");
+        setUserInGameState(() => "PREPARE_GAME");
         setCurrentStage(getGameConfig().stages.at(0)!);
         setResult((prevResult) => ({
             id: String(Number(prevResult.id + 1)),
@@ -27,7 +27,16 @@ const Game: Component = () => {
     return (
         <div>
             <Switch>
-                <Match when={getUserInGameState() === "ABLE_TO_PLAY"}>
+                <Match when={getUserInGameState() === "PREPARE_GAME"}>
+                    Choose trivia quiz
+                    <Button
+                        type="button"
+                        onClick={() => setUserInGameState(() => "PLAYING")}
+                    >
+                        African Capital Cities
+                    </Button>
+                </Match>
+                <Match when={getUserInGameState() === "PLAYING"}>
                     <Show when={getCurrentStage()}>
                         {(stage) => (
                             <GameStageView gameStage={stage()}>
