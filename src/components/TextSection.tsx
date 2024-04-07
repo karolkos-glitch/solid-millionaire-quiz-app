@@ -10,7 +10,7 @@ const TextSection: Component<{
         <article class="flex flex-col gap-y-4">
             <header class="py-4">
                 <h2
-                    class="text-4xl font-bold "
+                    class="text-2xl font-bold sm:text-4xl "
                     classList={{
                         "text-slate-800": props.mode === "standard",
                         "text-white": props.mode === "reversed",
