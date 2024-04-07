@@ -99,13 +99,15 @@ const Home: Component = () => {
                             <p>
                                 I created this app to train my Solid.js skills.
                             </p>
-                            <h3 class="font-bold">Core tech:</h3>
-                            <ul class="ml-4 list-disc">
-                                <li>solid.js</li>
-                                <li>@solidjs/router</li>
-                                <li>tailwindcss</li>
-                                <li>solid-motionone</li>
-                            </ul>
+                            <div>
+                                <h3 class="font-bold">Core tech:</h3>
+                                <ul class="ml-4 list-disc">
+                                    <li>solid.js</li>
+                                    <li>@solidjs/router</li>
+                                    <li>tailwindcss</li>
+                                    <li>solid-motionone</li>
+                                </ul>
+                            </div>
                             <p>
                                 Some UI components were inspired by{" "}
                                 <a

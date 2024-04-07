@@ -7,7 +7,7 @@ const TextSection: Component<{
     mode: "reversed" | "standard";
 }> = (props) => {
     return (
-        <article class="flex flex-col gap-y-4">
+        <article class="flex flex-col gap-y-8 my-16">
             <header class="py-4">
                 <h2
                     class="text-2xl font-bold sm:text-4xl "
@@ -19,9 +19,9 @@ const TextSection: Component<{
                     {props.title}
                 </h2>
             </header>
-            <div class="grid gap-4 sm:grid-cols-2">
+            <div class="grid gap-16 sm:grid-cols-2">
                 <div
-                    class="flex flex-col gap-y-4"
+                    class="flex flex-col gap-y-12"
                     classList={{
                         "text-slate-800": props.mode === "standard",
                         "text-white": props.mode === "reversed",
