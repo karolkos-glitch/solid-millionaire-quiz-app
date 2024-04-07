@@ -1,10 +1,10 @@
-import { RouteSectionProps, useNavigate } from "@solidjs/router";
-import { Component } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+import { Component, JSX } from "solid-js";
 
 import "solid-devtools";
 import gameReactivity from "@millie/domain/game/gameReactivity";
 
-const App: Component<RouteSectionProps> = (props) => {
+const App: Component<{ children: JSX.Element }> = (props) => {
     const navigate = useNavigate();
     const navigateToHomepage = () => {
         const [_, setUserInGameState] = gameReactivity.userInGameState;

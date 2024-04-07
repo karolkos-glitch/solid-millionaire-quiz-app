@@ -6,6 +6,14 @@ const GameStageView: Component<{
 }> = (props) => {
     return (
         <div>
+            <figure>
+                <img
+                    src="/hubert-urbanski-thinking.jpeg"
+                    alt="Huber Urbański"
+                    width={500}
+                    height={400}
+                />
+            </figure>
             <p>Faza: {props.gameStage.order}</p>
             <p>Gra o cenę: {props.gameStage.price}</p>
             {props.children}

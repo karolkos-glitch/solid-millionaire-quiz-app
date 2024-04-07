@@ -48,6 +48,14 @@ const Game: Component = () => {
                 </Match>
                 <Match when={getUserInGameState() === "GAME_WON"}>
                     Win!
+                    <figure>
+                        <img
+                            src="/huber-success-reaction.webp"
+                            alt="Huber Urbański"
+                            width={500}
+                            height={400}
+                        />
+                    </figure>
                     <GameResult score={getResult().score} />
                     <Button
                         type="button"
@@ -58,6 +66,14 @@ const Game: Component = () => {
                 </Match>
                 <Match when={getUserInGameState() === "GAME_FAILURE"}>
                     Failure!
+                    <figure>
+                        <img
+                            src="/huber-failure.jpeg"
+                            alt="Huber Urbański"
+                            width={500}
+                            height={400}
+                        />
+                    </figure>
                     <GameResult score={getResult().score} />
                     <Button
                         type="button"

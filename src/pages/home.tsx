@@ -11,11 +11,20 @@ const Home: Component = () => {
         setUserInGameState("RESET");
         navigate("/game");
     };
-
     return (
-        <Button type="button" onClick={navigateToGame}>
-            Start
-        </Button>
+        <main class="flex h-screen w-screen flex-col">
+            <header class="flex h-[70%] items-center justify-center px-8">
+                <h1 class="text-center text-8xl font-bold text-slate-800 ">
+                    WHO WANTS TO BE <br />A{" "}
+                    <span class="text-yellow-600">MILLIONAIRE?</span>
+                </h1>
+            </header>
+            <div class="flex items-center justify-center">
+                <Button type="button" onClick={navigateToGame}>
+                    Enter the Hot Seat
+                </Button>
+            </div>
+        </main>
     );
 };
 
