@@ -1,5 +1,6 @@
 import { Component, JSX } from "solid-js";
 import { GameStage } from "@millie/domain/game/types";
+
 const GameStageView: Component<{
     gameStage: GameStage;
     children: JSX.Element;
@@ -14,8 +15,8 @@ const GameStageView: Component<{
                     height={400}
                 />
             </figure>
-            <p>Faza: {props.gameStage.order}</p>
-            <p>Gra o cenę: {props.gameStage.price}</p>
+            <p>Phase no. {props.gameStage.order}</p>
+            <p>Price: {props.gameStage.price}</p>
             {props.children}
         </div>
     );

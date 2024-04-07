@@ -6,7 +6,7 @@ const Button: Component<
     return (
         <button
             {...props}
-            class="border-neutral-200 bg-white text-black dark:border-slate-800 dark:bg-slate-900 dark:text-white p-4"
+            class="transition rounded-md border-neutral-200 bg-white p-4 text-black dark:border-slate-800 dark:bg-slate-900 dark:text-white hover:dark:bg-slate-700"
         >
             {props.children}
         </button>

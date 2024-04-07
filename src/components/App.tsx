@@ -15,11 +15,14 @@ const App: Component<{ children: JSX.Element }> = (props) => {
     return (
         <>
             <main class="h-screen w-screen">
-                <h1 class="text-center text-3xl font-bold underline">
+                <header class="flex items-center justify-center py-4">
                     <button type="button" onClick={navigateToHomepage}>
-                        Who Wants to Be a Millionaire?
+                        <h1 class="text-center text-xl  font-bold text-slate-800">
+                            WHO WANTS TO BE A{" "}
+                            <span class="text-yellow-600">MILLIONAIRE?</span>
+                        </h1>
                     </button>
-                </h1>
+                </header>
                 <section class="flex h-full flex-col items-center justify-center gap-y-4">
                     {props.children}
                 </section>
