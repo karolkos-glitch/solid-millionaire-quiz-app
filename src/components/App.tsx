@@ -13,14 +13,14 @@ const App: Component<{ children: JSX.Element }> = (props) => {
     };
 
     return (
-        <main class="h-screen w-screen flex flex-col bg-slate-950">
+        <main class="flex h-screen w-screen flex-col bg-slate-950">
             <Motion.header
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
                     delay: 1.2,
                 }}
-                class="flex items-center justify-center py-4 z-50"
+                class="z-50 flex items-center justify-center py-4"
             >
                 <button type="button" onClick={navigateToHomepage}>
                     <h1 class="text-center text-xl font-bold text-white">

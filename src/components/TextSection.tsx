@@ -7,7 +7,7 @@ const TextSection: Component<{
     mode: "reversed" | "standard";
 }> = (props) => {
     return (
-        <article class="flex flex-col gap-y-8 my-16">
+        <article class="my-16 flex flex-col gap-y-8">
             <header class="py-4">
                 <h2
                     class="text-2xl font-bold sm:text-4xl "
