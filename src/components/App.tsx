@@ -18,7 +18,7 @@ const App: Component<{ children: JSX.Element }> = (props) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{
-                    delay: 1.2,
+                    delay: 0.75,
                 }}
                 class="z-50 flex items-center justify-center py-4"
             >

@@ -1,17 +1,14 @@
-import Button from "@millie/components/Button";
+import GameView from "@millie/components/game/GameView";
 import gameReactivity from "@millie/domain/game/gameReactivity";
-import GameStageView from "@millie/components/GameStageView";
-import GameTaskAnswerView from "@millie/components/GameTaskAnswerView";
-import GameTaskView from "@millie/components/GameTaskView";
-import { Component, createEffect, For, Match, Show, Switch } from "solid-js";
-import GameResult from "@millie/components/GameResult";
+
+import { Component, createEffect } from "solid-js";
 
 const Game: Component = () => {
     const {
         userInGameState: [getUserInGameState, setUserInGameState],
-        currentStage: [getCurrentStage, setCurrentStage],
+        currentStage: [_getCurrentStage, setCurrentStage],
         gameConfig: [getGameConfig],
-        result: [getResult, setResult],
+        result: [_getResult, setResult],
     } = gameReactivity;
 
     createEffect(() => {
@@ -24,61 +21,7 @@ const Game: Component = () => {
         }));
     });
 
-    return (
-        <Switch>
-            <Match when={getUserInGameState() === "PREPARE_GAME"}>
-                <h2 class="text-white">Choose trivia quiz</h2>
-                <Button
-                    type="button"
-                    onClick={() => setUserInGameState(() => "PLAYING")}
-                >
-                    African Capital Cities
-                </Button>
-            </Match>
-            <Match when={getUserInGameState() === "PLAYING"}>
-                <Show when={getCurrentStage()}>
-                    {(stage) => (
-                        <GameStageView gameStage={stage()}>
-                            <GameTaskView
-                                description={stage().task.description}
-                            >
-                                <For each={stage().task.answers}>
-                                    {(gameTaskAnswer) => (
-                                        <GameTaskAnswerView
-                                            {...gameTaskAnswer}
-                                        />
-                                    )}
-                                </For>
-                            </GameTaskView>
-                        </GameStageView>
-                    )}
-                </Show>
-            </Match>
-            <Match when={getUserInGameState() === "GAME_WON"}>
-                Win!
-                <GameResult score={getResult().score} />
-                <Button
-                    type="button"
-                    onClick={() => setUserInGameState(() => "RESET")}
-                >
-                    Try to win again!!!
-                </Button>
-            </Match>
-            <Match when={getUserInGameState() === "GAME_FAILURE"}>
-                Failure!
-                <GameResult score={getResult().score} />
-                <Button
-                    type="button"
-                    onClick={() => setUserInGameState(() => "RESET")}
-                >
-                    Try again!!!
-                </Button>
-            </Match>
-            <Match when={getUserInGameState() === "RESET"}>
-                Resetting game...
-            </Match>
-        </Switch>
-    );
+    return <GameView />;
 };
 
 export default Game;
